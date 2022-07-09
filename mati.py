@@ -1,8 +1,8 @@
 import mysql.connector
-conexion=mysql.connector.connect(host="localhost", 
-                                  user="root", 
-                                  passwd="", 
-                                  database="prueba")
+conexion=mysql.connector.connect(host="localhost",      ##url de la base de datos
+                                  user="root",          #usuario de la base de datos   
+                                  passwd="",            # contraseña de la base de datos
+                                  database="prueba")    #!importante tienes que tener una base de datos que se llame prueba
 cursor=conexion.cursor()
 
 ##creacion de la tabla categoria
