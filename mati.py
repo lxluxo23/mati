@@ -73,11 +73,32 @@ while not salir:
                     print("Editorial  = ", fila[4])
                     print("Autor  = ", fila[5], "\n")
                     print ("el numero de producto es de :", cursor.rowcount)
-            elif opcion ==2:
+            elif opcionp ==2:
                 sql = (
-                    "insert into producto(FIRST_NAME, LAST_NAME, AGE, SEX, INCOME)"
+                    "insert into producto(id_categoria,nombre,descripcion,editorial,autores)"
                     "VALUES (%s, %s, %s, %s, %s)")
-                print ("los datos")
+                cursor.execute("select * from categoria ")
+                print ("categorias existentes")
+                for fila in cursor:
+                    print ("ID = ",fila[0], " nombre: ",fila[1])
+                print("Ingrese el id de la categoria del producto")
+                id_cat=int (input())
+                print("ingrese el nombre del producto: \n")
+                nombre_prod=input()
+                print("ingrese descripcion del producto: \n")
+                descripcion_prod=input()
+                print ("ingrese editorial del producto: \n")
+                editorial_prod=input()
+                print("ingrese el o los autores del producto: \n")
+                autores_prod=input()
+                datos = (id_cat,nombre_prod,descripcion_prod,editorial_prod,autores_prod)
+                print(datos)
+                try:
+                    cursor.execute(sql, datos)
+                    conexion.commit()
+                except:
+                    conexion.rollback()
+                print ("datos guardatos exitosamente")
             elif opcionp ==5:
                 atras=True
     elif opcion == 2:
