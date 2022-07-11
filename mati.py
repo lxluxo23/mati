@@ -1,18 +1,23 @@
 from sqlite3 import Cursor
 import mysql.connector
 import os
+from dotenv import load_dotenv 
+load_dotenv()
+
+host = os.getenv("host")
+user = os.getenv("user")
+passwd = os.getenv("passwd")
+database = os.getenv("database")
+
 def clear():
     if os.name == "posix":
         os.system ("clear")
     elif os.name == ("ce", "nt", "dos"):
         os.system ("cls")
-conexion=mysql.connector.connect(host="localhost",      ##url de la base de datos
-                                  user="root",          #usuario de la base de datos   
-                                  passwd="",            # contraseña de la base de datos
-                                  database="prueba")    #!importante tienes que tener una base de datos que se llame prueba
-cursor=conexion.cursor()
+conexion=mysql.connector.connect(host=host,user=user,passwd=passwd,database=database)
 
-##roles para login
+cursor=conexion.cursor()
+##roles para logins
 
 cursor.execute("create table if not exists roles (id int not null auto_increment primary key,descripcion varchar(255) not null); ")
 cursor.execute ("insert ignore into roles values (1,'administrador')")
