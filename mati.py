@@ -12,7 +12,7 @@ database = os.getenv("database")
 def clear():
     if os.name == "posix":
         os.system ("clear")
-    elif os.name == ("ce", "nt", "dos"):
+    elif os.name == ("nt"):
         os.system ("cls")
 conexion=mysql.connector.connect(host=host,user=user,passwd=passwd,database=database)
 
